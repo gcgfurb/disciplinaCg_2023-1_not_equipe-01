@@ -66,7 +66,7 @@ namespace gcgcg
     {
       base.OnLoad();
 
-      GL.ClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+      GL.ClearColor(0.29f, 0.50f, 0.69f, 0.5f);
 
       // Eixos
       _vertexBufferObject_sruEixos = GL.GenBuffer();
@@ -119,6 +119,7 @@ namespace gcgcg
         objetoNovo = new Ponto(null, Matematica.GerarPtosCirculo(i, 0.5));
         objetoNovo.PrimitivaTipo = PrimitiveType.Points;
         objetoNovo.PrimitivaTamanho = 5;
+        objetoNovo.shaderCor = new Shader("Shaders/shader.vert", "Shaders/shaderAmarela.frag");
         ObjetoNovo(objetoNovo); objetoNovo = null;
      }
       #endregion
