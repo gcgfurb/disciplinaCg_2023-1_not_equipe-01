@@ -82,28 +82,28 @@ namespace gcgcg
       _shaderVerde = new Shader("Shaders/shader.vert", "Shaders/shaderVerde.frag");
       _shaderAzul = new Shader("Shaders/shader.vert", "Shaders/shaderAzul.frag");
 
-      #region Objeto: ponto  
-      objetoNovo = new Ponto(null, new Ponto4D(0.50, 0.50));
-      objetoNovo.PrimitivaTipo = PrimitiveType.Points;
-      objetoNovo.PrimitivaTamanho = 10;
-      ObjetoNovo(objetoNovo); objetoNovo = null;
-      objetoNovo = new Ponto(null, new Ponto4D(-0.50, -0.50));
-      objetoNovo.PrimitivaTipo = PrimitiveType.Points;
-      objetoNovo.PrimitivaTamanho = 10;
-      ObjetoNovo(objetoNovo); objetoNovo = null;
-      objetoNovo = new Ponto(null, new Ponto4D(0.50, -0.50));
-      objetoNovo.PrimitivaTipo = PrimitiveType.Points;
-      objetoNovo.PrimitivaTamanho = 10;
-      ObjetoNovo(objetoNovo); objetoNovo = null;
-      objetoNovo = new Ponto(null, new Ponto4D(-0.50, 0.50));
-      objetoNovo.PrimitivaTipo = PrimitiveType.Points;
-      objetoNovo.PrimitivaTamanho = 10;
-      ObjetoNovo(objetoNovo); objetoNovo = null;
-      #endregion
+      //#region Objeto: ponto  
+      //objetoNovo = new Ponto(null, new Ponto4D(0.50, 0.50));
+      //objetoNovo.PrimitivaTipo = PrimitiveType.Points;
+      //objetoNovo.PrimitivaTamanho = 10;
+      //ObjetoNovo(objetoNovo); objetoNovo = null;
+      //objetoNovo = new Ponto(null, new Ponto4D(-0.50, -0.50));
+      //objetoNovo.PrimitivaTipo = PrimitiveType.Points;
+      //objetoNovo.PrimitivaTamanho = 10;
+      //ObjetoNovo(objetoNovo); objetoNovo = null;
+      //objetoNovo = new Ponto(null, new Ponto4D(0.50, -0.50));
+      //objetoNovo.PrimitivaTipo = PrimitiveType.Points;
+      //objetoNovo.PrimitivaTamanho = 10;
+      //ObjetoNovo(objetoNovo); objetoNovo = null;
+      //objetoNovo = new Ponto(null, new Ponto4D(-0.50, 0.50));
+      //objetoNovo.PrimitivaTipo = PrimitiveType.Points;
+      //objetoNovo.PrimitivaTamanho = 10;
+      //ObjetoNovo(objetoNovo); objetoNovo = null;
+      //#endregion
 
-
-
-
+      objetoNovo = new Retangulo(null, new Ponto4D(0.50,0.50), new Ponto4D(-0.50, -0.50));
+      ObjetoNovo(objetoNovo);
+      
 
 #if CG_Privado
       #region Objeto: circulo  
@@ -156,7 +156,7 @@ namespace gcgcg
       {
         Console.WriteLine(contador);
         contador += 1;
-        if (contador == 7){
+        if (contador == 2){
           contador = 0;
         }
 
@@ -164,33 +164,19 @@ namespace gcgcg
         {
           case 0:
                 #region Objeto: ponto  
-                objetoNovo = new Ponto(null, new Ponto4D(0.50, 0.50));
+                objetoNovo.
                 objetoNovo.PrimitivaTipo = PrimitiveType.Points;
-                objetoNovo.PrimitivaTamanho = 10;
-                ObjetoNovo(objetoNovo); objetoNovo = null;
-                objetoNovo = new Ponto(null, new Ponto4D(-0.50, -0.50));
-                objetoNovo.PrimitivaTipo = PrimitiveType.Points;
-                objetoNovo.PrimitivaTamanho = 10;
-                ObjetoNovo(objetoNovo); objetoNovo = null;
-                objetoNovo = new Ponto(null, new Ponto4D(0.50, -0.50));
-                objetoNovo.PrimitivaTipo = PrimitiveType.Points;
-                objetoNovo.PrimitivaTamanho = 10;
-                ObjetoNovo(objetoNovo); objetoNovo = null;
-                objetoNovo = new Ponto(null, new Ponto4D(-0.50, 0.50));
-                objetoNovo.PrimitivaTipo = PrimitiveType.Points;
-                objetoNovo.PrimitivaTamanho = 10;
-                ObjetoNovo(objetoNovo); objetoNovo = null;
+                ObjetoNovo(objetoNovo);
                 #endregion
             break;
 
           case 1:
-              #region Objeto: segmento de reta  
-              objetoNovo = new SegReta(null, new Ponto4D(-0.50, 0.50), new Ponto4D(0.50, 0.50));
-              ObjetoNovo(objetoNovo); objetoNovo = null;
+              #region Objeto: segmento de reta 
+              objetoNovo.PrimitivaTipo = PrimitiveType.Lines;
               #endregion
             break;
 
-        case 2:
+        case 26:
               #region Objeto: segmento de reta  
               objetoNovo = new SegReta(null, new Ponto4D(-0.50, 0.50), new Ponto4D(0.50, 0.50));
               ObjetoNovo(objetoNovo); objetoNovo = null;
@@ -203,7 +189,7 @@ namespace gcgcg
               #endregion
             break;
 
-        case 3:
+        case 36:
               #region Objeto: segmento de reta  
               objetoNovo = new SegReta(null, new Ponto4D(-0.50, 0.50), new Ponto4D(0.50, 0.50));
               ObjetoNovo(objetoNovo); objetoNovo = null;
@@ -214,7 +200,7 @@ namespace gcgcg
               #endregion
             break;
         
-        case 4:
+        case 46:
               #region Objeto: polígono qualquer  
               objetoNovo = new Poligono(null);
               objetoNovo.PontosAdicionar(new Ponto4D(0.50, 0.50));
@@ -224,7 +210,7 @@ namespace gcgcg
               #endregion
             break;
 
-        case 5:
+        case 56:
               #region Objeto: polígono qualquer  
               objetoNovo = new Poligono(null);
               objetoNovo.PontosAdicionar(new Ponto4D(0.50, 0.50));
@@ -236,7 +222,7 @@ namespace gcgcg
               #endregion
             break;
         
-        case 6:
+        case 66:
               #region Objeto: polígono qualquer  
               objetoNovo = new Poligono(null);
               objetoNovo.PontosAdicionar(new Ponto4D(0.50, 0.50));
