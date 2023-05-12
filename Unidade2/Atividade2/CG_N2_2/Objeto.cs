@@ -20,7 +20,7 @@ namespace gcgcg
     public PrimitiveType PrimitivaTipo { get => primitivaTipo; set => primitivaTipo = value; }
     private float primitivaTamanho = 1;
     public float PrimitivaTamanho { get => primitivaTamanho; set => primitivaTamanho = value; }
-    private Shader _shaderCor = new Shader("Shaders/shader.vert", "Shaders/shaderBranca.frag");
+    private Shader _shaderCor = new Shader("Shaders/shader.vert", "Shaders/shaderMagenta.frag");
     public Shader shaderCor { set => _shaderCor = value; }
 
     // Vértices do objeto
