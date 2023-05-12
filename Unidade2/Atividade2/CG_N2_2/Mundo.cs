@@ -164,7 +164,6 @@ namespace gcgcg
         {
           case 0:
                 #region Objeto: ponto  
-                objetoNovo.
                 objetoNovo.PrimitivaTipo = PrimitiveType.Points;
                 ObjetoNovo(objetoNovo);
                 #endregion
