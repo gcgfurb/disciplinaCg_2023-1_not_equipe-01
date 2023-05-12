@@ -1,8 +1,8 @@
 # Disciplina de Computação Gráfica  
 
-Material da disciplina de Computação Gráfica.  
+Material  da disciplina de Computação Gráfica.  
 
-## Atenção  
+## Atenção 
 
 <!--
 Atenção: O professor irá enviar um e-mail institucional (seuNome@furb.br) com um convite para acessar um repositório (versionador de código). Neste repositório deve ser postada as atividades desta unidade até as 24:00 do dia em que foi pedido para ser entregue (ver cronograma). Faça o seu trabalho, cópias receberão nota zero. O professor pode a qualquer momento questionar e avaliar o trabalho desenvolvido.
