@@ -101,7 +101,7 @@ namespace gcgcg
       //ObjetoNovo(objetoNovo); objetoNovo = null;
       //#endregion
 
-      objetoNovo = new Retangulo(null, new Ponto4D(0.50,0.50), new Ponto4D(-0.50, -0.50));
+      objetoNovo = new Retangulo(null, new Ponto4D(-0.50,-0.50), new Ponto4D(0.50, 0.50));
       ObjetoNovo(objetoNovo);
       
 
@@ -156,7 +156,7 @@ namespace gcgcg
       {
         Console.WriteLine(contador);
         contador += 1;
-        if (contador == 2){
+        if (contador == 7){
           contador = 0;
         }
 
@@ -175,60 +175,33 @@ namespace gcgcg
               #endregion
             break;
 
-        case 26:
+        case 2:
               #region Objeto: segmento de reta  
-              objetoNovo = new SegReta(null, new Ponto4D(-0.50, 0.50), new Ponto4D(0.50, 0.50));
-              ObjetoNovo(objetoNovo); objetoNovo = null;
-              objetoNovo = new SegReta(null, new Ponto4D(0.50, 0.50), new Ponto4D(0.50, -0.50));
-              ObjetoNovo(objetoNovo); objetoNovo = null;
-              objetoNovo = new SegReta(null, new Ponto4D(0.50, -0.50), new Ponto4D(-0.50, -0.50));
-              ObjetoNovo(objetoNovo); objetoNovo = null;
-              objetoNovo = new SegReta(null, new Ponto4D(-0.50, -0.50), new Ponto4D(-0.50, 0.50));
-              ObjetoNovo(objetoNovo); objetoNovo = null;
+              objetoNovo.PrimitivaTipo = PrimitiveType.LineLoop;
               #endregion
             break;
 
-        case 36:
+        case 3:
               #region Objeto: segmento de reta  
-              objetoNovo = new SegReta(null, new Ponto4D(-0.50, 0.50), new Ponto4D(0.50, 0.50));
-              ObjetoNovo(objetoNovo); objetoNovo = null;
-              objetoNovo = new SegReta(null, new Ponto4D(0.50, 0.50), new Ponto4D(0.50, -0.50));
-              ObjetoNovo(objetoNovo); objetoNovo = null;
-              objetoNovo = new SegReta(null, new Ponto4D(0.50, -0.50), new Ponto4D(-0.50, -0.50));
-              ObjetoNovo(objetoNovo); objetoNovo = null;
+              objetoNovo.PrimitivaTipo = PrimitiveType.LineStrip;
               #endregion
             break;
         
-        case 46:
+        case 4:
               #region Objeto: polígono qualquer  
-              objetoNovo = new Poligono(null);
-              objetoNovo.PontosAdicionar(new Ponto4D(0.50, 0.50));
-              objetoNovo.PontosAdicionar(new Ponto4D(0.50, -0.50));
-              objetoNovo.PontosAdicionar(new Ponto4D(-0.50, -0.50));
-              ObjetoNovo(objetoNovo); objetoNovo = null;
+              objetoNovo.PrimitivaTipo = PrimitiveType.Triangles;
               #endregion
             break;
 
-        case 56:
+        case 5:
               #region Objeto: polígono qualquer  
-              objetoNovo = new Poligono(null);
-              objetoNovo.PontosAdicionar(new Ponto4D(0.50, 0.50));
-              objetoNovo.PontosAdicionar(new Ponto4D(0.50, -0.50));
-              objetoNovo.PontosAdicionar(new Ponto4D(-0.50, -0.50));
-              objetoNovo.PontosAdicionar(new Ponto4D(0, 0));
-              objetoNovo.PontosAdicionar(new Ponto4D(-0.50, 0.50));
-              ObjetoNovo(objetoNovo); objetoNovo = null;
+              objetoNovo.PrimitivaTipo = PrimitiveType.TriangleStrip;
               #endregion
             break;
         
-        case 66:
+        case 6:
               #region Objeto: polígono qualquer  
-              objetoNovo = new Poligono(null);
-              objetoNovo.PontosAdicionar(new Ponto4D(0.50, 0.50));
-              objetoNovo.PontosAdicionar(new Ponto4D(0.50, -0.50));
-              objetoNovo.PontosAdicionar(new Ponto4D(-0.50, -0.50));
-              objetoNovo.PontosAdicionar(new Ponto4D(-0.50, 0.50));
-              ObjetoNovo(objetoNovo); objetoNovo = null;
+              objetoNovo.PrimitivaTipo = PrimitiveType.TriangleFan;
               #endregion
             break;
         }
