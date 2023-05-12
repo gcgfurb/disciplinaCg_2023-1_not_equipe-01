@@ -130,10 +130,10 @@ namespace gcgcg
       pontosLista.Add(pto);
     }
 
-    // public void PontosRemoverUltimo()
-    // {
-    //   pontosLista.RemoveAt(pontosLista.Count - 1);
-    // }
+    public void PontosRemoverUltimo()
+    {
+      pontosLista.RemoveAt(pontosLista.Count - 1);
+    }
 
     // protected bool PontosVazio()
     // {

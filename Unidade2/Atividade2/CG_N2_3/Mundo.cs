@@ -25,6 +25,8 @@ namespace gcgcg
     private double X2 = 0.25;
     private double Y1 = 0;
     private double Y2 = 0.25;
+
+    private double angulo = 45;
     private Objeto objetoNovo = null;
 
     private readonly float[] _sruEixos =
@@ -89,7 +91,7 @@ namespace gcgcg
 
       #region Objeto: segmento de reta  
       objetoNovo = new SegReta(null, new Ponto4D(X1, Y1), new Ponto4D(X2, Y2));
-      ObjetoNovo(objetoNovo); objetoNovo = null;
+      ObjetoNovo(objetoNovo);
       #endregion
 
 
@@ -143,17 +145,25 @@ namespace gcgcg
       if (input.IsKeyPressed(Keys.Q)){
         X1 = X1 - 0.25;
         X2 = X2 - 0.25;
-        #region Objeto: segmento de reta  
-        objetoNovo = new SegReta(null, new Ponto4D(X1, Y1), new Ponto4D(X2, Y2));
-        ObjetoNovo(objetoNovo); objetoNovo = null;
+        #region Objeto: segmento de reta
+        objetoNovo.PontosRemoverUltimo();
+        objetoNovo.PontosRemoverUltimo();
+        objetoNovo.PontosAdicionar(new Ponto4D(X1, Y1));
+        objetoNovo.PontosAdicionar(new Ponto4D(X2, Y2));
+        objetoNovo.ObjetoAtualizar();
+        ObjetoNovo(objetoNovo);
         #endregion
       }
       if (input.IsKeyPressed(Keys.W)){
         X1 = X1 + 0.25;
         X2 = X2 + 0.25;
         #region Objeto: segmento de reta  
-        objetoNovo = new SegReta(null, new Ponto4D(X1, Y1), new Ponto4D(X2 + 0.25, Y2));
-        ObjetoNovo(objetoNovo); objetoNovo = null;
+        objetoNovo.PontosRemoverUltimo();
+        objetoNovo.PontosRemoverUltimo();
+        objetoNovo.PontosAdicionar(new Ponto4D(X1, Y1));
+        objetoNovo.PontosAdicionar(new Ponto4D(X2, Y2));
+        objetoNovo.ObjetoAtualizar();
+        ObjetoNovo(objetoNovo);
         #endregion
       }
 
@@ -161,16 +171,48 @@ namespace gcgcg
         Y2 = Y2 - 0.25;
         X2 = X2 - 0.25;
         #region Objeto: segmento de reta  
-        objetoNovo = new SegReta(null, new Ponto4D(X1, Y1), new Ponto4D(X2, Y2));
-        ObjetoNovo(objetoNovo); objetoNovo = null;
+        objetoNovo.PontosRemoverUltimo();
+        objetoNovo.PontosRemoverUltimo();
+        objetoNovo.PontosAdicionar(new Ponto4D(X1, Y1));
+        objetoNovo.PontosAdicionar(new Ponto4D(X2, Y2));
+        objetoNovo.ObjetoAtualizar();
+        ObjetoNovo(objetoNovo);
         #endregion
       }
       if (input.IsKeyPressed(Keys.S)){
         Y2 = Y2 + 0.25;
         X2 = X2 + 0.25;
         #region Objeto: segmento de reta  
-        objetoNovo = new SegReta(null, new Ponto4D(X1, Y1), new Ponto4D(X2, Y2));
-        ObjetoNovo(objetoNovo); objetoNovo = null;
+        objetoNovo.PontosRemoverUltimo();
+        objetoNovo.PontosRemoverUltimo();
+        objetoNovo.PontosAdicionar(new Ponto4D(X1, Y1));
+        objetoNovo.PontosAdicionar(new Ponto4D(X2, Y2));
+        objetoNovo.ObjetoAtualizar();
+        ObjetoNovo(objetoNovo);
+        #endregion
+      }
+      if (input.IsKeyPressed(Keys.Z)){
+        angulo = angulo - 0.5;
+        Ponto4D ponto = Matematica.GerarPtosCirculo(angulo, X2);
+        #region Objeto: segmento de reta  
+        objetoNovo.PontosRemoverUltimo();
+        objetoNovo.PontosRemoverUltimo();
+        objetoNovo.PontosAdicionar(new Ponto4D(X1, Y1));
+        objetoNovo.PontosAdicionar(ponto);
+        objetoNovo.ObjetoAtualizar();
+        ObjetoNovo(objetoNovo);
+        #endregion
+      }
+      if (input.IsKeyPressed(Keys.X)){
+        angulo = angulo + 0.5;
+        Ponto4D ponto = Matematica.GerarPtosCirculo(angulo, X2);
+        #region Objeto: segmento de reta  
+        objetoNovo.PontosRemoverUltimo();
+        objetoNovo.PontosRemoverUltimo();
+        objetoNovo.PontosAdicionar(new Ponto4D(X1, Y1));
+        objetoNovo.PontosAdicionar(ponto);
+        objetoNovo.ObjetoAtualizar();
+        ObjetoNovo(objetoNovo);
         #endregion
       }
 
