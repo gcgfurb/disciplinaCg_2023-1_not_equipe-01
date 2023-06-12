@@ -39,11 +39,14 @@ namespace gcgcg
     private Shader _shaderCiano;
     private Shader _shaderMagenta;
     private Shader _shaderAmarela;
+    private bool isDesenhando;
+    List<Ponto4D> pontosPoligonoNovo = new List<Ponto4D>();
 
     public Mundo(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
            : base(gameWindowSettings, nativeWindowSettings)
     {
       mundo = new Objeto(null, ref rotuloNovo);
+      isDesenhando = false;
     }
 
     private void Diretivas()
@@ -214,14 +217,34 @@ namespace gcgcg
       #endregion
 
       #region  Mouse
-
-      if (MouseState.IsButtonPressed(MouseButton.Left))
-      {
-        System.Console.WriteLine("MouseState.IsButtonPressed(MouseButton.Left)");
-        System.Console.WriteLine("__ Valores do Espaço de Tela");
-        System.Console.WriteLine("Vector2 mousePosition: " + MousePosition);
-        System.Console.WriteLine("Vector2i windowSize: " + Size);
+      if (input.IsKeyPressed(Keys.C) && objetoSelecionado != null) {
+        isDesenhando = true;
+        pontosPoligonoNovo = new List<Ponto4D>();
+         System.Console.WriteLine(isDesenhando);
       }
+      if (MouseState.IsButtonPressed(MouseButton.Left)) {
+        int janelaLargura = Size.X;
+        int janelaAltura = Size.Y;
+        Ponto4D mousePonto = new Ponto4D(MousePosition.X, MousePosition.Y);
+        Ponto4D sruPonto = Utilitario.NDC_TelaSRU(janelaLargura, janelaAltura, mousePonto);
+        if (isDesenhando) {
+          pontosPoligonoNovo.Add(sruPonto);
+          System.Console.WriteLine(sruPonto);
+        }
+        
+      }
+      if (input.IsKeyPressed(Keys.Enter)) {
+        if (isDesenhando) {
+          List<Ponto4D> pontosPoligonoTriangulo = new List<Ponto4D>();
+          pontosPoligonoTriangulo.Add(new Ponto4D(0.50, 0.50));
+          pontosPoligonoTriangulo.Add(new Ponto4D(0.75, 0.75));
+          pontosPoligonoTriangulo.Add(new Ponto4D(0.25, 0.75));
+          objetoSelecionado = new Poligono(objetoSelecionado, ref rotuloNovo, pontosPoligonoNovo);
+          isDesenhando = false; 
+          System.Console.WriteLine("foi");
+        }
+      }
+
       if (MouseState.IsButtonDown(MouseButton.Right) && objetoSelecionado != null)
       {
         System.Console.WriteLine("MouseState.IsButtonDown(MouseButton.Right)");
