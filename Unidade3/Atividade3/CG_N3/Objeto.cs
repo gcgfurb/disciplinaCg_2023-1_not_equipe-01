@@ -178,6 +178,32 @@ namespace gcgcg
       }
     }
 
+    public Objeto GrafocenaDeleta(Objeto objetoAtual) {
+      if (objetosLista.Contains(objetoAtual))
+      {
+        objetosLista.Remove(objetoAtual);
+        if (objetosLista.Count > 0) {
+          return objetosLista[0];
+        } else if (objetoAtual.paiRef != null) {
+          return objetoAtual.paiRef;
+        }
+        return null;
+      } else {
+        foreach (var objeto in objetosLista)
+        {
+          var obj = objeto.GrafocenaDeleta(objetoAtual);
+          if (obj != null)
+          {
+            return obj;
+          } else {
+
+          }
+        }
+        return null;
+      }
+      
+    }
+
     public void GrafocenaImprimir(String idt)
     {
       System.Console.WriteLine(idt + rotulo);

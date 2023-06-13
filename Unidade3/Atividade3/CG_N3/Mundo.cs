@@ -181,6 +181,11 @@ namespace gcgcg
         objetoSelecionado = mundo.GrafocenaBuscaProximo(objetoSelecionado);
         objetoSelecionado.shaderCor = _shaderAmarela;
       }
+      if (input.IsKeyPressed(Keys.D)) {
+        Objeto deletado = objetoSelecionado;
+        objetoSelecionado = mundo.GrafocenaDeleta(objetoSelecionado);
+        deletado.OnUnload();
+      }
       if (input.IsKeyPressed(Keys.G))
         mundo.GrafocenaImprimir("");
       if (input.IsKeyPressed(Keys.P) && objetoSelecionado != null)
@@ -235,10 +240,6 @@ namespace gcgcg
       }
       if (input.IsKeyPressed(Keys.Enter)) {
         if (isDesenhando) {
-          List<Ponto4D> pontosPoligonoTriangulo = new List<Ponto4D>();
-          pontosPoligonoTriangulo.Add(new Ponto4D(0.50, 0.50));
-          pontosPoligonoTriangulo.Add(new Ponto4D(0.75, 0.75));
-          pontosPoligonoTriangulo.Add(new Ponto4D(0.25, 0.75));
           objetoSelecionado = new Poligono(objetoSelecionado, ref rotuloNovo, pontosPoligonoNovo);
           isDesenhando = false; 
           System.Console.WriteLine("foi");
