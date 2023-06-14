@@ -188,8 +188,14 @@ namespace gcgcg
       }
       if (input.IsKeyPressed(Keys.G))
         mundo.GrafocenaImprimir("");
-      if (input.IsKeyPressed(Keys.P) && objetoSelecionado != null)
+      if (input.IsKeyPressed(Keys.P) && objetoSelecionado != null) {
+        if (objetoSelecionado.PrimitivaTipo == PrimitiveType.LineStrip) {
+          objetoSelecionado.PrimitivaTipo = PrimitiveType.LineLoop;
+        } else {
+          objetoSelecionado.PrimitivaTipo = PrimitiveType.LineStrip;
+        }
         System.Console.WriteLine(objetoSelecionado.ToString());
+      }
       if (input.IsKeyPressed(Keys.M) && objetoSelecionado != null)
         objetoSelecionado.MatrizImprimir();
       //TODO: não está atualizando a BBox com as transformações geométricas
