@@ -196,6 +196,18 @@ namespace gcgcg
         }
         System.Console.WriteLine(objetoSelecionado.ToString());
       }
+      if (input.IsKeyPressed(Keys.B) && objetoSelecionado != null) {
+        objetoSelecionado.shaderCor = _shaderAzul;
+      }
+      if (input.IsKeyPressed(Keys.R) && objetoSelecionado != null) {
+        objetoSelecionado.shaderCor = _shaderVermelha;
+      }
+      if (input.IsKeyPressed(Keys.G) && objetoSelecionado != null) {
+        objetoSelecionado.shaderCor = _shaderVerde;
+      }
+      if (input.IsKeyPressed(Keys.W) && objetoSelecionado != null) {
+        objetoSelecionado.shaderCor = _shaderBranca;
+      }
       if (input.IsKeyPressed(Keys.M) && objetoSelecionado != null)
         objetoSelecionado.MatrizImprimir();
       //TODO: não está atualizando a BBox com as transformações geométricas
