@@ -71,9 +71,9 @@ namespace gcgcg
       }
     }
 
-    public void ObjetoAtualizar()
-    {
-      float[] vertices = new float[pontosLista.Count * 3];
+    public void ObjetoAtualizar(){
+      if (pontosLista != null && pontosLista.Count > 0) {
+        float[] vertices = new float[pontosLista.Count * 3];
       int ptoLista = 0;
       for (int i = 0; i < vertices.Length; i += 3)
       {
@@ -93,6 +93,7 @@ namespace gcgcg
       GL.BindVertexArray(_vertexArrayObject);
       GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
       GL.EnableVertexAttribArray(0);
+      }
     }
 
     public void Desenhar(Transformacao4D matrizGrafo)
