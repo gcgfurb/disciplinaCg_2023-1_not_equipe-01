@@ -26,6 +26,7 @@ namespace gcgcg
 
     // Vértices do objeto TODO: o objeto mundo deveria ter estes atributos abaixo?
     protected List<Ponto4D> pontosLista = new List<Ponto4D>();
+    public List<Ponto4D> PontosLista { get => pontosLista; set => pontosLista = value; }
     private int _vertexBufferObject;
     private int _vertexArrayObject;
 
@@ -142,6 +143,12 @@ namespace gcgcg
     public void PontosAlterar(Ponto4D pto, int posicao)
     {
       pontosLista[posicao] = pto;
+      ObjetoAtualizar();
+    }
+
+    public void PontosRemover(int posicao)
+    {
+      pontosLista.RemoveAt(posicao);
       ObjetoAtualizar();
     }
 
