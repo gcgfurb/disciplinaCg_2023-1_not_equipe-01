@@ -1,4 +1,4 @@
-@startuml name
+@startuml
 class Spline {
     + SplineQtdPto(inc:int) : void
     + Spline(paiRef:Objeto, _rotulo:char)

@@ -1,4 +1,4 @@
-@startuml name
+@startuml
 class SegReta {
     + SegReta(paiRef:Objeto, _rotulo:char)
     + SegReta(paiRef:Objeto, _rotulo:char, ptoIni:Ponto4D, ptoFim:Ponto4D)
