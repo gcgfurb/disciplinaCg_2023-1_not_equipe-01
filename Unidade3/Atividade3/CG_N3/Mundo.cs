@@ -217,8 +217,40 @@ namespace gcgcg
         Ponto4D sruPonto = Utilitario.NDC_TelaSRU(janelaLargura, janelaAltura, mousePonto); 
 
         if (((sruPonto.X < maiorX) && (sruPonto.X > menorX)) && ((sruPonto.Y < maiorY) && (sruPonto.Y > menorY))){
-          objetoSelecionado = new Poligono(objetoSelecionado, ref rotuloNovo, listaPontos);
-          objetoSelecionado.shaderCor = _shaderVerde;
+          
+          List<List<Ponto4D>> listaVertices = new List<List<Ponto4D>>();
+          for (int i = 0; i < listaPontosObjeto.Count; i++) {
+            if (i + 1 == listaPontosObjeto.Count){
+              List<Ponto4D> temp = new List<Ponto4D>();
+              temp.Add(listaPontosObjeto[i]);
+              temp.Add(listaPontosObjeto[0]);
+              listaVertices.Add(temp);
+            }else {
+              List<Ponto4D> temp = new List<Ponto4D>();
+              temp.Add(listaPontosObjeto[i]);
+              temp.Add(listaPontosObjeto[i+1]);
+              listaVertices.Add(temp);
+            }
+          }
+
+          int passou = 0;
+
+          for (int i = 0; i < listaVertices.Count; i++){
+            List<Ponto4D> parVertice = listaVertices[i];
+            double x1 = parVertice[0].X;
+            double y1 = parVertice[0].Y;
+
+            double x2 = parVertice[1].X;
+            double y2 = parVertice[1].Y;
+
+            if ((sruPonto.Y < y1) != (sruPonto.Y < y2) && (sruPonto.X < x1 + (((sruPonto.Y - y1) / (y2-y1)) * (x2-x1)))) {
+              passou += 1;
+            }
+          }
+          if ((passou % 2) != 0){
+            objetoSelecionado = new Poligono(objetoSelecionado, ref rotuloNovo, listaPontos);
+            objetoSelecionado.shaderCor = _shaderVerde;
+          }
         }
       }
 
