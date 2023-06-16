@@ -109,22 +109,22 @@ namespace gcgcg
       pontosPoligonoBandeira.Add(new Ponto4D(0.25, 0.75));
       objetoSelecionado = new Poligono(mundo, ref rotuloNovo, pontosPoligonoBandeira);
       #endregion
-      #region declara um objeto filho ao polígono
-      List<Ponto4D> pontosPoligonoTriangulo = new List<Ponto4D>();
-      pontosPoligonoTriangulo.Add(new Ponto4D(0.50, 0.50));
-      pontosPoligonoTriangulo.Add(new Ponto4D(0.75, 0.75));
-      pontosPoligonoTriangulo.Add(new Ponto4D(0.25, 0.75));
-      objetoSelecionado = new Poligono(objetoSelecionado, ref rotuloNovo, pontosPoligonoTriangulo);
-      #endregion
-      #region declara um objeto neto ao polígono
-      objetoSelecionado = new Circulo(objetoSelecionado, ref rotuloNovo, 0.05, new Ponto4D(0.50, 0.50));
-      objetoSelecionado.PrimitivaTipo = PrimitiveType.LineLoop;
-      #endregion
+      // #region declara um objeto filho ao polígono
+      // List<Ponto4D> pontosPoligonoTriangulo = new List<Ponto4D>();
+      // pontosPoligonoTriangulo.Add(new Ponto4D(0.50, 0.50));
+      // pontosPoligonoTriangulo.Add(new Ponto4D(0.75, 0.75));
+      // pontosPoligonoTriangulo.Add(new Ponto4D(0.25, 0.75));
+      // objetoSelecionado = new Poligono(objetoSelecionado, ref rotuloNovo, pontosPoligonoTriangulo);
+      // #endregion
+      // #region declara um objeto neto ao polígono
+      // objetoSelecionado = new Circulo(objetoSelecionado, ref rotuloNovo, 0.05, new Ponto4D(0.50, 0.50));
+      // objetoSelecionado.PrimitivaTipo = PrimitiveType.LineLoop;
+      // #endregion
 
-      #region Objeto: retângulo  
-      objetoSelecionado = new Retangulo(mundo, ref rotuloNovo, new Ponto4D(-0.25, 0.25), new Ponto4D(-0.75, 0.75));
-      objetoSelecionado.PrimitivaTipo = PrimitiveType.LineLoop;
-      #endregion
+      // #region Objeto: retângulo  
+      // objetoSelecionado = new Retangulo(mundo, ref rotuloNovo, new Ponto4D(-0.25, 0.25), new Ponto4D(-0.75, 0.75));
+      // objetoSelecionado.PrimitivaTipo = PrimitiveType.LineLoop;
+      // #endregion
 
       // #region Objeto: segmento de reta  
       // objetoSelecionado = new SegReta(mundo, ref rotuloNovo, new Ponto4D(-0.5, -0.5), new Ponto4D());
@@ -181,6 +181,47 @@ namespace gcgcg
         objetoSelecionado = mundo.GrafocenaBuscaProximo(objetoSelecionado);
         objetoSelecionado.shaderCor = _shaderAmarela;
       }
+
+      if (input.IsKeyPressed(Keys.S) && objetoSelecionado != null){
+        List<Ponto4D> listaPontosObjeto = objetoSelecionado.PontosLista;
+        double menorX = listaPontosObjeto[0].X;
+        double maiorX = listaPontosObjeto[0].X;
+        double menorY = listaPontosObjeto[0].Y;
+        double maiorY = listaPontosObjeto[0].Y;
+
+        for (int i = 0; i < listaPontosObjeto.Count; i++) {
+          if (listaPontosObjeto[i].X < menorX)
+            menorX = listaPontosObjeto[i].X;
+
+          if (listaPontosObjeto[i].X > maiorX)
+            maiorX = listaPontosObjeto[i].X;
+          
+          if (listaPontosObjeto[i].Y > maiorY)
+            maiorY = listaPontosObjeto[i].Y;
+
+          if (listaPontosObjeto[i].Y < menorY)
+            menorY = listaPontosObjeto[i].Y;
+        }
+
+        List<Ponto4D> listaPontos = new List<Ponto4D>();
+
+        listaPontos.Add(new Ponto4D(menorX, maiorY));
+        listaPontos.Add(new Ponto4D(menorX, menorY));
+        listaPontos.Add(new Ponto4D(maiorX, menorY));
+        listaPontos.Add(new Ponto4D(maiorX, maiorY));
+
+        int janelaLargura = Size.X;
+        int janelaAltura = Size.Y;
+
+        Ponto4D mousePonto = new Ponto4D(MousePosition.X, MousePosition.Y);
+        Ponto4D sruPonto = Utilitario.NDC_TelaSRU(janelaLargura, janelaAltura, mousePonto); 
+
+        if (((sruPonto.X < maiorX) && (sruPonto.X > menorX)) && ((sruPonto.Y < maiorY) && (sruPonto.Y > menorY))){
+          objetoSelecionado = new Poligono(objetoSelecionado, ref rotuloNovo, listaPontos);
+          objetoSelecionado.shaderCor = _shaderVerde;
+        }
+      }
+
       if (input.IsKeyPressed(Keys.D)) {
         Objeto deletado = objetoSelecionado;
         objetoSelecionado = mundo.GrafocenaDeleta(objetoSelecionado);
