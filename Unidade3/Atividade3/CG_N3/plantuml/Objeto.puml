@@ -23,6 +23,7 @@ class Objeto {
     + MatrizRotacao(angulo:double) : void
     + MatrizRotacaoZBBox(angulo:double) : void
     + OnUnload() : void
+    + GrafocenaDeleta(objetoAtual:Object) : Object
 }
 Objeto --> "PrimitivaTipo" PrimitiveType
 Objeto --> "shaderCor" Shader
