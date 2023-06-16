@@ -1,4 +1,4 @@
-@startuml
+@startuml name
 class Objeto {
     + Rotulo : char <<get>>
     + PrimitivaTamanho : float <<get>> <<set>>

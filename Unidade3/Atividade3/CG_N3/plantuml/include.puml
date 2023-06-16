@@ -1,4 +1,4 @@
-@startuml
+@startuml name
 !include ./Poligono.puml
 !include ./SrPalito.puml
 !include ./Mundo.puml
@@ -9,6 +9,4 @@
 !include ./Circulo.puml
 !include ./SegReta.puml
 !include ./Program.puml
-!include ./obj/Debug/net6.0/CG_N3.AssemblyInfo.puml
-!include ./obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.puml
 @enduml
