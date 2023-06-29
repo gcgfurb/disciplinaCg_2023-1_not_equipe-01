@@ -1,5 +1,5 @@
 ﻿using System;
-// using LearnOpenTK.Common;
+using LearnOpenTK.Common;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
@@ -61,7 +61,7 @@ namespace LearnOpenTK
         private readonly Vector3[] _cubePositions =
         {
             // new Vector3(0.0f, 0.0f, 0.0f),
-            // new Vector3(2.0f, 5.0f, -15.0f),
+            //new Vector3(2.0f, 5.0f, -15.0f),
             new Vector3(-1.5f, -2.2f, -2.5f),
             // new Vector3(-3.8f, -2.0f, -12.3f),
             // new Vector3(2.4f, -0.4f, -3.5f),
@@ -87,19 +87,21 @@ namespace LearnOpenTK
 
         private int _vaoLamp;
 
-        private Shader _lampShader;
+        private Common.Shader _lampShader;
 
-        private Shader _lightingShader;
+        private Common.Shader _lightingShader;
 
-        private Texture _diffuseMap;
+        private Common.Texture _diffuseMap;
 
-        private Texture _specularMap;
+        private Common.Texture _specularMap;
 
-        private Camera _camera;
+        private Common.Camera _camera;
 
         private bool _firstMove = true;
 
         private Vector2 _lastPos;
+
+        private bool isSpot = false;
 
         public Window(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
             : base(gameWindowSettings, nativeWindowSettings)
@@ -165,6 +167,8 @@ namespace LearnOpenTK
 
             _diffuseMap.Use(TextureUnit.Texture0);
             // _specularMap.Use(TextureUnit.Texture1);
+
+
             _lightingShader.Use();
 
             _lightingShader.SetMatrix4("view", _camera.GetViewMatrix());
@@ -202,17 +206,21 @@ namespace LearnOpenTK
             }
 
             // Spot light
-            _lightingShader.SetVector3("spotLight.position", _camera.Position);
+            if (isSpot) {
+                _lightingShader.SetVector3("spotLight.position", _camera.Position);
             _lightingShader.SetVector3("spotLight.direction", _camera.Front);
             _lightingShader.SetVector3("spotLight.ambient", new Vector3(0.0f, 0.0f, 0.0f));
             _lightingShader.SetVector3("spotLight.diffuse", new Vector3(1.0f, 1.0f, 1.0f));
             _lightingShader.SetVector3("spotLight.specular", new Vector3(1.0f, 1.0f, 1.0f));
+            }
             _lightingShader.SetFloat("spotLight.constant", 1.0f);
             _lightingShader.SetFloat("spotLight.linear", 0.09f);
             _lightingShader.SetFloat("spotLight.quadratic", 0.032f);
             _lightingShader.SetFloat("spotLight.cutOff", MathF.Cos(MathHelper.DegreesToRadians(12.5f)));
             _lightingShader.SetFloat("spotLight.outerCutOff", MathF.Cos(MathHelper.DegreesToRadians(17.5f)));
 
+
+            // desenha cubo
             for (int i = 0; i < _cubePositions.Length; i++)
             {
                 Matrix4 model = Matrix4.CreateTranslation(_cubePositions[i]);
@@ -257,6 +265,14 @@ namespace LearnOpenTK
             if (input.IsKeyDown(Keys.Escape))
             {
                 Close();
+            }
+
+            if (input.IsKeyDown(Keys.D1)){
+                if (isSpot) {
+                    isSpot = false;
+                } else {
+                    isSpot = true;
+                }
             }
 
             const float cameraSpeed = 1.5f;

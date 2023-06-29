@@ -1,0 +1,10 @@
+C:\Users\monic\Documents\BCC2023\teste\disciplinaCg_2023-1_not_equipe-01\Unidade4\Atividade4\Common\bin\Debug\netcoreapp3.1\LearnOpenTK.Common.deps.json
+C:\Users\monic\Documents\BCC2023\teste\disciplinaCg_2023-1_not_equipe-01\Unidade4\Atividade4\Common\bin\Debug\netcoreapp3.1\LearnOpenTK.Common.dll
+C:\Users\monic\Documents\BCC2023\teste\disciplinaCg_2023-1_not_equipe-01\Unidade4\Atividade4\Common\bin\Debug\netcoreapp3.1\LearnOpenTK.Common.pdb
+C:\Users\monic\Documents\BCC2023\teste\disciplinaCg_2023-1_not_equipe-01\Unidade4\Atividade4\Common\obj\Debug\netcoreapp3.1\Common.csproj.AssemblyReference.cache
+C:\Users\monic\Documents\BCC2023\teste\disciplinaCg_2023-1_not_equipe-01\Unidade4\Atividade4\Common\obj\Debug\netcoreapp3.1\Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\monic\Documents\BCC2023\teste\disciplinaCg_2023-1_not_equipe-01\Unidade4\Atividade4\Common\obj\Debug\netcoreapp3.1\Common.AssemblyInfoInputs.cache
+C:\Users\monic\Documents\BCC2023\teste\disciplinaCg_2023-1_not_equipe-01\Unidade4\Atividade4\Common\obj\Debug\netcoreapp3.1\Common.AssemblyInfo.cs
+C:\Users\monic\Documents\BCC2023\teste\disciplinaCg_2023-1_not_equipe-01\Unidade4\Atividade4\Common\obj\Debug\netcoreapp3.1\Common.csproj.CoreCompileInputs.cache
+C:\Users\monic\Documents\BCC2023\teste\disciplinaCg_2023-1_not_equipe-01\Unidade4\Atividade4\Common\obj\Debug\netcoreapp3.1\LearnOpenTK.Common.dll
+C:\Users\monic\Documents\BCC2023\teste\disciplinaCg_2023-1_not_equipe-01\Unidade4\Atividade4\Common\obj\Debug\netcoreapp3.1\LearnOpenTK.Common.pdb
