@@ -1,0 +1,10 @@
+C:\Users\jvper\OneDrive\Área de Trabalho\furb\cg\disciplinaCg_2023-1_not_equipe-01\Unidade4\Atividade4\CG_N4\Common\bin\Debug\netcoreapp3.1\LearnOpenTK.Common.deps.json
+C:\Users\jvper\OneDrive\Área de Trabalho\furb\cg\disciplinaCg_2023-1_not_equipe-01\Unidade4\Atividade4\CG_N4\Common\bin\Debug\netcoreapp3.1\LearnOpenTK.Common.dll
+C:\Users\jvper\OneDrive\Área de Trabalho\furb\cg\disciplinaCg_2023-1_not_equipe-01\Unidade4\Atividade4\CG_N4\Common\bin\Debug\netcoreapp3.1\LearnOpenTK.Common.pdb
+C:\Users\jvper\OneDrive\Área de Trabalho\furb\cg\disciplinaCg_2023-1_not_equipe-01\Unidade4\Atividade4\CG_N4\Common\obj\Debug\netcoreapp3.1\Common.csproj.AssemblyReference.cache
+C:\Users\jvper\OneDrive\Área de Trabalho\furb\cg\disciplinaCg_2023-1_not_equipe-01\Unidade4\Atividade4\CG_N4\Common\obj\Debug\netcoreapp3.1\Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jvper\OneDrive\Área de Trabalho\furb\cg\disciplinaCg_2023-1_not_equipe-01\Unidade4\Atividade4\CG_N4\Common\obj\Debug\netcoreapp3.1\Common.AssemblyInfoInputs.cache
+C:\Users\jvper\OneDrive\Área de Trabalho\furb\cg\disciplinaCg_2023-1_not_equipe-01\Unidade4\Atividade4\CG_N4\Common\obj\Debug\netcoreapp3.1\Common.AssemblyInfo.cs
+C:\Users\jvper\OneDrive\Área de Trabalho\furb\cg\disciplinaCg_2023-1_not_equipe-01\Unidade4\Atividade4\CG_N4\Common\obj\Debug\netcoreapp3.1\Common.csproj.CoreCompileInputs.cache
+C:\Users\jvper\OneDrive\Área de Trabalho\furb\cg\disciplinaCg_2023-1_not_equipe-01\Unidade4\Atividade4\CG_N4\Common\obj\Debug\netcoreapp3.1\LearnOpenTK.Common.dll
+C:\Users\jvper\OneDrive\Área de Trabalho\furb\cg\disciplinaCg_2023-1_not_equipe-01\Unidade4\Atividade4\CG_N4\Common\obj\Debug\netcoreapp3.1\LearnOpenTK.Common.pdb
