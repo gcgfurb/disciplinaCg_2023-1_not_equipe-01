@@ -351,6 +351,7 @@ namespace LearnOpenTK
                 isPoint = false;
                 isDirection = false;
                 isSpot = false;
+                isMaps = false;
                 
             }
 
