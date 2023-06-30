@@ -105,7 +105,11 @@ namespace LearnOpenTK
 
         private bool isDirection = false;
 
+        private bool isMaps = false;
+
         private bool isPoint = false;
+
+        private readonly Vector3 _lightPos = new Vector3(1.2f, 1.0f, 2.0f);
 
         public Window(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
             : base(gameWindowSettings, nativeWindowSettings)
@@ -154,6 +158,7 @@ namespace LearnOpenTK
             }
 
             _diffuseMap = Texture.LoadFromFile("Resources/container2.png");
+            _specularMap = Texture.LoadFromFile("Resources/container2_specular.png");
 
             _camera = new Camera(Vector3.UnitZ * 3, Size.X / (float)Size.Y);
 
@@ -169,9 +174,19 @@ namespace LearnOpenTK
             GL.BindVertexArray(_vaoModel);
 
             _diffuseMap.Use(TextureUnit.Texture0);
+            
+            if (isMaps) {
+                _diffuseMap = Texture.LoadFromFile("Resources/container2.png");
+                _specularMap = Texture.LoadFromFile("Resources/container2_specular.png");
+                _diffuseMap.Use(TextureUnit.Texture0);
+                _specularMap.Use(TextureUnit.Texture1);
+            } else {
+                _specularMap.Deleta(); 
+            }
 
             _lightingShader.Use();
 
+            _lightingShader.SetMatrix4("model", Matrix4.Identity);
             _lightingShader.SetMatrix4("view", _camera.GetViewMatrix());
             _lightingShader.SetMatrix4("projection", _camera.GetProjectionMatrix());
 
@@ -182,14 +197,21 @@ namespace LearnOpenTK
             _lightingShader.SetVector3("material.specular", new Vector3(0.5f, 0.5f, 0.5f));
             _lightingShader.SetFloat("material.shininess", 32.0f);
 
+            //new Vector3(1.2f, 1.0f, 2.0f)
+
             /*
                Here we set all the uniforms for the 5/6 types of lights we have. We have to set them manually and index
                the proper PointLight struct in the array to set each uniform variable. This can be done more code-friendly
                by defining light types as classes and set their values in there, or by using a more efficient uniform approach
                by using 'Uniform buffer objects', but that is something we'll discuss in the 'Advanced GLSL' tutorial.
             */
-            // Directional light
-            if (isDirection) {
+            //teste
+            if (isMaps) {
+                _lightingShader.SetVector3("dirLight.direction", new Vector3(-0.2f, -1.0f, -0.3f));
+                _lightingShader.SetVector3("dirLight.ambient", new Vector3(0.2f));
+                _lightingShader.SetVector3("dirLight.diffuse", new Vector3(0.5f));
+                _lightingShader.SetVector3("dirLight.specular", new Vector3(1.0f));
+            } else if (isDirection) {
                 _lightingShader.SetVector3("dirLight.direction", new Vector3(-0.2f, -1.0f, -0.3f));
                 _lightingShader.SetVector3("dirLight.ambient", new Vector3(0.05f, 0.05f, 0.05f));
                 _lightingShader.SetVector3("dirLight.diffuse", new Vector3(0.4f, 0.4f, 0.4f));
@@ -200,7 +222,19 @@ namespace LearnOpenTK
                 _lightingShader.SetVector3("dirLight.diffuse", new Vector3());
                 _lightingShader.SetVector3("dirLight.specular", new Vector3());
             }
-            
+
+            // Directional light
+            // if (isDirection) {
+            //     _lightingShader.SetVector3("dirLight.direction", new Vector3(-0.2f, -1.0f, -0.3f));
+            //     _lightingShader.SetVector3("dirLight.ambient", new Vector3(0.05f, 0.05f, 0.05f));
+            //     _lightingShader.SetVector3("dirLight.diffuse", new Vector3(0.4f, 0.4f, 0.4f));
+            //     _lightingShader.SetVector3("dirLight.specular", new Vector3(0.5f, 0.5f, 0.5f));
+            // } else {
+            //     _lightingShader.SetVector3("dirLight.direction", new Vector3());
+            //     _lightingShader.SetVector3("dirLight.ambient", new Vector3());
+            //     _lightingShader.SetVector3("dirLight.diffuse", new Vector3());
+            //     _lightingShader.SetVector3("dirLight.specular", new Vector3());
+            // }
 
             // Point lights
             for (int i = 0; i < _pointLightPositions.Length; i++)
@@ -253,6 +287,8 @@ namespace LearnOpenTK
                 GL.DrawArrays(PrimitiveType.Triangles, 0, 36);
             }
 
+            //  GL.DrawArrays(PrimitiveType.Triangles, 0, 36);
+
             GL.BindVertexArray(_vaoLamp);
 
             _lampShader.Use();
@@ -269,6 +305,17 @@ namespace LearnOpenTK
 
                 GL.DrawArrays(PrimitiveType.Triangles, 0, 36);
             }
+
+            // Matrix4 lampMatrix = Matrix4.Identity;
+            // lampMatrix *= Matrix4.CreateScale(0.2f);
+            // lampMatrix *= Matrix4.CreateTranslation(_lightPos);
+
+            // _lampShader.SetMatrix4("model", lampMatrix);
+            // _lampShader.SetMatrix4("view", _camera.GetViewMatrix());
+            // _lampShader.SetMatrix4("projection", _camera.GetProjectionMatrix());
+
+            // GL.DrawArrays(PrimitiveType.Triangles, 0, 36);
+
 
             SwapBuffers();
         }
@@ -294,6 +341,14 @@ namespace LearnOpenTK
                     isSpot = false;
                 } else {
                     isSpot = true;
+                }
+            }
+
+            if (input.IsKeyPressed(Keys.D2)){
+                if (isMaps) {
+                    isMaps = false;
+                } else {
+                    isMaps = true;
                 }
             }
 

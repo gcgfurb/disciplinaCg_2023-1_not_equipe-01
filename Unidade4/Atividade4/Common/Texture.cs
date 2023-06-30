@@ -87,5 +87,10 @@ namespace LearnOpenTK.Common
             GL.ActiveTexture(unit);
             GL.BindTexture(TextureTarget.Texture2D, Handle);
         }
+
+        public void Deleta()
+        {
+            GL.DeleteTexture(Handle);
+        }
     }
 }
