@@ -103,6 +103,10 @@ namespace LearnOpenTK
 
         private bool isSpot = false;
 
+        private bool isDirection = false;
+
+        private bool isPoint = false;
+
         public Window(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
             : base(gameWindowSettings, nativeWindowSettings)
         {
@@ -150,7 +154,6 @@ namespace LearnOpenTK
             }
 
             _diffuseMap = Texture.LoadFromFile("Resources/container2.png");
-            // _specularMap = Texture.LoadFromFile("Resources/container2_specular.png");
 
             _camera = new Camera(Vector3.UnitZ * 3, Size.X / (float)Size.Y);
 
@@ -166,8 +169,6 @@ namespace LearnOpenTK
             GL.BindVertexArray(_vaoModel);
 
             _diffuseMap.Use(TextureUnit.Texture0);
-            // _specularMap.Use(TextureUnit.Texture1);
-
 
             _lightingShader.Use();
 
@@ -188,18 +189,33 @@ namespace LearnOpenTK
                by using 'Uniform buffer objects', but that is something we'll discuss in the 'Advanced GLSL' tutorial.
             */
             // Directional light
-            _lightingShader.SetVector3("dirLight.direction", new Vector3(-0.2f, -1.0f, -0.3f));
-            _lightingShader.SetVector3("dirLight.ambient", new Vector3(0.05f, 0.05f, 0.05f));
-            _lightingShader.SetVector3("dirLight.diffuse", new Vector3(0.4f, 0.4f, 0.4f));
-            _lightingShader.SetVector3("dirLight.specular", new Vector3(0.5f, 0.5f, 0.5f));
+            if (isDirection) {
+                _lightingShader.SetVector3("dirLight.direction", new Vector3(-0.2f, -1.0f, -0.3f));
+                _lightingShader.SetVector3("dirLight.ambient", new Vector3(0.05f, 0.05f, 0.05f));
+                _lightingShader.SetVector3("dirLight.diffuse", new Vector3(0.4f, 0.4f, 0.4f));
+                _lightingShader.SetVector3("dirLight.specular", new Vector3(0.5f, 0.5f, 0.5f));
+            } else {
+                _lightingShader.SetVector3("dirLight.direction", new Vector3());
+                _lightingShader.SetVector3("dirLight.ambient", new Vector3());
+                _lightingShader.SetVector3("dirLight.diffuse", new Vector3());
+                _lightingShader.SetVector3("dirLight.specular", new Vector3());
+            }
+            
 
             // Point lights
             for (int i = 0; i < _pointLightPositions.Length; i++)
             {
-                _lightingShader.SetVector3($"pointLights[{i}].position", _pointLightPositions[i]);
-                _lightingShader.SetVector3($"pointLights[{i}].ambient", new Vector3(0.05f, 0.05f, 0.05f));
-                _lightingShader.SetVector3($"pointLights[{i}].diffuse", new Vector3(0.8f, 0.8f, 0.8f));
-                _lightingShader.SetVector3($"pointLights[{i}].specular", new Vector3(1.0f, 1.0f, 1.0f));
+                if (isPoint) {
+                    _lightingShader.SetVector3($"pointLights[{i}].position", _pointLightPositions[i]);
+                    _lightingShader.SetVector3($"pointLights[{i}].ambient", new Vector3(0.05f, 0.05f, 0.05f));
+                    _lightingShader.SetVector3($"pointLights[{i}].diffuse", new Vector3(0.8f, 0.8f, 0.8f));
+                    _lightingShader.SetVector3($"pointLights[{i}].specular", new Vector3(1.0f, 1.0f, 1.0f));
+                } else {
+                     _lightingShader.SetVector3($"pointLights[{i}].position", new Vector3());
+                    _lightingShader.SetVector3($"pointLights[{i}].ambient", new Vector3());
+                    _lightingShader.SetVector3($"pointLights[{i}].diffuse", new Vector3());
+                    _lightingShader.SetVector3($"pointLights[{i}].specular", new Vector3());
+                }
                 _lightingShader.SetFloat($"pointLights[{i}].constant", 1.0f);
                 _lightingShader.SetFloat($"pointLights[{i}].linear", 0.09f);
                 _lightingShader.SetFloat($"pointLights[{i}].quadratic", 0.032f);
@@ -208,10 +224,16 @@ namespace LearnOpenTK
             // Spot light
             if (isSpot) {
                 _lightingShader.SetVector3("spotLight.position", _camera.Position);
-            _lightingShader.SetVector3("spotLight.direction", _camera.Front);
-            _lightingShader.SetVector3("spotLight.ambient", new Vector3(0.0f, 0.0f, 0.0f));
-            _lightingShader.SetVector3("spotLight.diffuse", new Vector3(1.0f, 1.0f, 1.0f));
-            _lightingShader.SetVector3("spotLight.specular", new Vector3(1.0f, 1.0f, 1.0f));
+                _lightingShader.SetVector3("spotLight.direction", _camera.Front);
+                _lightingShader.SetVector3("spotLight.ambient", new Vector3(0.0f, 0.0f, 0.0f));
+                _lightingShader.SetVector3("spotLight.diffuse", new Vector3(1.0f, 1.0f, 1.0f));
+                _lightingShader.SetVector3("spotLight.specular", new Vector3(1.0f, 1.0f, 1.0f));
+            } else {
+                _lightingShader.SetVector3("spotLight.position", new Vector3());
+                _lightingShader.SetVector3("spotLight.direction", new Vector3());
+                _lightingShader.SetVector3("spotLight.ambient", new Vector3());
+                _lightingShader.SetVector3("spotLight.diffuse", new Vector3());
+                _lightingShader.SetVector3("spotLight.specular", new Vector3());
             }
             _lightingShader.SetFloat("spotLight.constant", 1.0f);
             _lightingShader.SetFloat("spotLight.linear", 0.09f);
@@ -267,12 +289,42 @@ namespace LearnOpenTK
                 Close();
             }
 
-            if (input.IsKeyDown(Keys.D1)){
+            if (input.IsKeyPressed(Keys.D5)){
                 if (isSpot) {
                     isSpot = false;
                 } else {
                     isSpot = true;
                 }
+            }
+
+            if (input.IsKeyPressed(Keys.D3)){
+                if (isDirection) {
+                    isDirection = false;
+                } else {
+                    isDirection = true;
+                }
+            }
+
+            if (input.IsKeyPressed(Keys.D4)){
+                if (isPoint) {
+                    isPoint = false;
+                } else {
+                    isPoint = true;
+                }
+            }
+
+            if (input.IsKeyPressed(Keys.D6)){
+                isPoint = true;
+                isDirection = true;
+                isSpot = true;
+                
+            }
+
+            if (input.IsKeyPressed(Keys.D0)){
+                isPoint = false;
+                isDirection = false;
+                isSpot = false;
+                
             }
 
             const float cameraSpeed = 1.5f;
